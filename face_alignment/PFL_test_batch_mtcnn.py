@@ -14,7 +14,10 @@ import matplotlib.pyplot as plt
 from src import detect_faces
 import glob
 import time
+
+
 parser = argparse.ArgumentParser(description='PyTorch face landmark')
+
 # Datasets
 parser.add_argument('-img', '--raptor_result', default='face76', type=str)
 parser.add_argument('-j', '--workers', default=8, type=int, metavar='N',
@@ -27,6 +30,7 @@ parser.add_argument('-c', '--checkpoint', default='checkpoint/mobilenet_224_mode
 args = parser.parse_args()
 mean = np.asarray([ 0.485, 0.456, 0.406 ])
 std = np.asarray([ 0.229, 0.224, 0.225 ])
+
 
 if torch.cuda.is_available():
     map_location=lambda storage, loc: storage.cuda()

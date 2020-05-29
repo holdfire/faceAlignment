@@ -5,12 +5,6 @@ import os
 import cv2
 import argparse
 
-parser = argparse.ArgumentParser(description="detect landmarks by face alignment, then crop the face area")
-parser.add_argument("--image_folder", default="./picture", help="original raptor_result folder")
-parser.add_argument("--crop_folder", default="./json_530", help="cropped raptor_result save folder")
-args = parser.parse_args()
-fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False)
-
 
 def crop_by_landmark(img, landmark, min_size=24, crop_scale=0.6, padding_scale=0.5):
     """
@@ -78,7 +72,14 @@ def face_alignment(image_folder, crop_folder):
                 cv2.imwrite(os.path.join(crop_folder, image_name+"_crop_"+str(i+1)+".jpg"), img_crop_pad)
     return 
 
+
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="detect landmarks by face alignment, then crop the face area")
+    parser.add_argument("--image_folder", default="./picture", help="original raptor_result folder")
+    parser.add_argument("--crop_folder", default="./json_530", help="cropped raptor_result save folder")
+    args = parser.parse_args()
+
+    fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False)
     face_alignment(args.image_folder, args.crop_folder) 
 
 

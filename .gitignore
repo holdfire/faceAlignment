@@ -2,7 +2,8 @@
 .idea
 .git
 
-datasets/*
+dataset_test/*
+dataset_train
 dataset_public/*
 !dataset_public/From_JackLUO/README.md
 !dataset_public/JD-landmark/README.md
