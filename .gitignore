@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+.git
+
+datasets/*
+dataset_public/*
+!dataset_public/From_JackLUO/README.md
+!dataset_public/JD-landmark/README.md
+!dataset_public/WFLW/README.md
+
+tools/.DS_Store
