@@ -67,7 +67,7 @@ def landmark_check(file_dir):
 
 
 if __name__ == "__main__":
-    file_dir = "../../datasets/train/landmark/"
+    file_dir = "../../dataset_train/train_inspect3/landmark_standard/"
     save_path = os.path.join(file_dir, "0_error_log.txt")
     error_log = landmark_check(file_dir)
     error_log = np.array(error_log)
