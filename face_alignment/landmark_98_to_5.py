@@ -2,7 +2,6 @@ import os
 import cv2
 import numpy as np
 
-
 def landmark_98_to_5(landmark98_path, landmark5_path):
     """
     从人脸98个关键点中选出5个：左眼，右眼，鼻尖，左嘴角，右嘴角
@@ -21,11 +20,17 @@ def landmark_98_to_5(landmark98_path, landmark5_path):
             f.writelines(landmark98[i])
     return
 
+def batch_landmark_98_to_5(landmark98_dir, landmark5_dir):
+    if not os.path.exists(landmark5_dir):
+        os.mkdir(landmark5_dir)
+    for file_name in os.listdir(landmark98_dir):
+        landmark98_path = os.path.join(landmark98_dir, file_name)
+        landmark5_path = os.path.join(landmark5_dir, file_name + "_5.txt")
+        landmark_98_to_5(landmark98_path, landmark5_path)
+    return
+
 
 if __name__ == "__main__":
-    landmark98_path = "../dataset_train/train_inspect4/landmark_relative/facetrack_20200407135638_14268.txt"
-    landmark5_path = "../dataset_train/train_inspect4/landmark_relative_5/facetrack_20200407135638_14268.txt"
-    # if not os.path.exists(landmark5_path):
-    #     os.mkdir(landmark5_path)
-
-    landmark_98_to_5(landmark98_path, landmark5_path)
+    landmark98_dir = "../dataset_train/train_inspect4/landmark_relative/"
+    landmark5_dir = "../dataset_train/train_inspect4/landmark_relative_5/"
+    batch_landmark_98_to_5(landmark98_dir, landmark5_dir)
